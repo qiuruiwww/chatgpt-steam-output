@@ -21,6 +21,7 @@ public class ChatImageController {
 
     @PostMapping("/generateImages")
     public String generateImages(@RequestBody GenerateImagesRequest request) {
+        log.info("generateImages request is:{}",request);
         return openAiImageService.generateImages(request.getPrompt(), request.getTemperature(), request.getMaxTokens(), request.getStop(),
                 request.getLogprobs(), request.isEcho(), request.getN());
     }

@@ -34,6 +34,7 @@ public class OpenAiImageService {
         String requestJson = "{\"prompt\":\"" + prompt + "\",\"n\":" + n + "}";
         HttpEntity<String> request = new HttpEntity<>(requestJson, headers);
         ResponseEntity<String> response = restTemplate.postForEntity(OPENAI_URL, request, String.class);
+        log.info("generateImages response is:{}",response.getBody());
         return response.getBody();
     }
 

@@ -45,15 +45,18 @@
                         dataType: "json", // 返回的数据类型
                         contentType: "application/json",
                         data: JSON.stringify({ // 将数据序列化为JSON格式字符串
-                            "prompt":messageElement,
-                            "n":3,
+                            "prompt": messageElement.value,
+                            "n":1,
                             "echo":false
                         }),
                         success: function(response) { // 请求成功后的回调函数
                             // 在控制台输出返回的数据
                             console.log(response);
 
-                            chat.innerHTML += '<tr><td style="height: 50px;">' + response + '</td></tr>';
+                            for (let i = 0; i < response.data.length; i++) {
+                                //response.data[i].url
+                                chat.innerHTML += '<img src="'+response.data[i].url+'">';
+                            }
                         },
                         error: function(jqXHR, textStatus, errorThrown) { // 请求失败后的回调函数
                             // 在控制台输出错误信息
